@@ -1,0 +1,312 @@
+<!-- Save this as carpenters.html or similar -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Available Carpenters - JustWage</title>
+  <style>
+    #feedbackBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  background-color: #ffd600;
+  color: #222;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 2000;
+  transition: background 0.3s;
+}
+#feedbackBtn:hover {
+  background-color: #e6b800;
+}
+    /* Same styling as before — no changes needed */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      background: #555;
+      color: #fff;
+      padding: 0 30px;
+      height: 60px;
+    }
+    .logo {
+      background: #e53935;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.5em;
+      padding: 5px 18px;
+      border-radius: 0 0 8px 8px;
+      margin-right: 30px;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      margin-left: auto;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #ffd600;
+    }
+    .header {
+      background: #222;
+      color: #ffffff;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .container {
+      padding: 25px 30px;
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 25px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      transition: border-color 0.3s;
+    }
+    #searchInput:focus {
+      border-color: #ffd600;
+      outline: none;
+    }
+    #workerContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .worker-card {
+      background: linear-gradient(135deg, #fffbe6, #fff3cc);
+      border: 1.5px solid #ffcc33;
+      border-radius: 14px;
+      padding: 20px 18px;
+      box-shadow: 0 6px 20px rgba(255, 204, 51, 0.25);
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.3s ease;
+      user-select: none;
+    }
+    .worker-card:hover {
+      border-color: #e6b800;
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px rgba(230, 184, 0, 0.35);
+    }
+    .worker-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #222;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .verified {
+      color: #28a745;
+      font-weight: 900;
+      font-size: 1.2rem;
+      user-select: none;
+    }
+    .worker-info {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.3;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+      padding: 20px;
+    }
+    .modal-content {
+      background: #fffde7;
+      padding: 30px 28px;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+      position: relative;
+      color: #222;
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      font-weight: 800;
+      font-size: 1.7rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #222;
+    }
+    .modal-content p {
+      margin: 8px 0;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .modal-content strong {
+      color: #444;
+    }
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 28px;
+      font-weight: 900;
+      cursor: pointer;
+      user-select: none;
+      color: #555;
+    }
+    .close-btn:hover {
+      color: #222;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 14px;
+      }
+      .worker-card {
+        padding: 16px 14px;
+      }
+      .container {
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Just<span style="color:#ffd600;">Wage</span></div>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="work.html">CATEGORY</a>
+    </div>
+  </nav>
+
+  <header class="header">Available Carpenters</header>
+
+  <main class="container">
+    <input type="text" id="searchInput" placeholder="Search carpenters by name or location..." onkeyup="filterWorkers()" />
+    <div id="workerContainer"></div>
+  </main>
+
+  <div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <span class="close-btn" onclick="event.stopPropagation(); closeModal(event)">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const workers = [
+        { name: "Ravi M", location: "T. Nagar, Chennai", contact: "9101000001", profession: "Carpenter", description: "Expert in custom furniture.", rating: 5, verified: true },
+        { name: "Suresh B", location: "Velachery, Chennai", contact: "9101000002", profession: "Carpenter", description: "Modular kitchen carpenter.", rating: 4, verified: true },
+        { name: "Kumar C", location: "Anna Nagar, Chennai", contact: "9101000003", profession: "Carpenter", description: "Office and home furniture.", rating: 4, verified: false },
+        { name: "Mani V", location: "Adyar, Chennai", contact: "9101000004", profession: "Carpenter", description: "Repairs broken wooden items.", rating: 3, verified: true },
+        { name: "Sathish R", location: "Mylapore, Chennai", contact: "9101000005", profession: "Carpenter", description: "Creates wall-mounted shelves.", rating: 5, verified: true },
+        { name: "Gopi D", location: "Tambaram, Chennai", contact: "9101000006", profession: "Carpenter", description: "Door and window frame fitting.", rating: 4, verified: true },
+        { name: "Dinesh N", location: "Perambur, Chennai", contact: "9101000007", profession: "Carpenter", description: "Cupboard and wardrobe maker.", rating: 4, verified: false },
+        { name: "Arun T", location: "Thiruvanmiyur, Chennai", contact: "9101000008", profession: "Carpenter", description: "Wood polishing and varnishing.", rating: 5, verified: true },
+        { name: "Muthu K", location: "Kodambakkam, Chennai", contact: "9101000009", profession: "Carpenter", description: "Bed frame construction.", rating: 3, verified: true },
+        { name: "Bala C", location: "Ashok Nagar, Chennai", contact: "9101000010", profession: "Carpenter", description: "Table and chair specialist.", rating: 5, verified: true }
+      ];
+
+      const workerContainer = document.getElementById("workerContainer");
+
+      function renderWorkers(list) {
+        workerContainer.innerHTML = "";
+        if (list.length === 0) {
+          workerContainer.innerHTML = `<p style="grid-column:1/-1; text-align:center; font-weight:600; color:#666;">No carpenters found matching your search.</p>`;
+          return;
+        }
+        list.forEach(worker => {
+          const card = document.createElement("div");
+          card.classList.add("worker-card");
+          card.innerHTML = `
+            <div class="worker-name">${worker.name}${worker.verified ? ' <span class="verified" title="Verified">&#10004;</span>' : ''}</div>
+            <div class="worker-info"><strong>Location:</strong> ${worker.location}</div>
+            <div class="worker-info"><strong>Contact:</strong> ${worker.contact}</div>
+            <div class="worker-info"><strong>Rating:</strong> ${"★".repeat(worker.rating)}${"☆".repeat(5 - worker.rating)}</div>
+          `;
+          card.addEventListener("click", () => showWorkerModal(worker));
+          workerContainer.appendChild(card);
+        });
+      }
+
+      function showWorkerModal(worker) {
+        const modal = document.getElementById("modal");
+        const modalContentDiv = document.getElementById("modalContent");
+        modalContentDiv.innerHTML = `
+          <h2>${worker.name} ${worker.verified ? '<span class="verified" title="Verified">&#10004;</span>' : ''}</h2>
+          <p><strong>Profession:</strong> ${worker.profession}</p>
+          <p><strong>Location:</strong> ${worker.location}</p>
+          <p><strong>Contact Number:</strong> ${worker.contact}</p>
+          <p><strong>Description:</strong> ${worker.description}</p>
+          <p><strong>Rating:</strong> ${"★".repeat(worker.rating)}${"☆".repeat(5 - worker.rating)}</p>
+        `;
+        modal.style.display = "flex";
+      }
+
+      window.closeModal = function (event) {
+        if (
+          event.target.classList.contains("modal") ||
+          event.target.classList.contains("close-btn")
+        ) {
+          document.getElementById("modal").style.display = "none";
+        }
+      };
+
+      window.filterWorkers = function () {
+        const query = document.getElementById("searchInput").value.toLowerCase();
+        const filtered = workers.filter(worker =>
+          worker.name.toLowerCase().includes(query) ||
+          worker.location.toLowerCase().includes(query)
+        );
+        renderWorkers(filtered);
+      };
+
+      renderWorkers(workers);
+    });
+  </script>
+   <!-- Feedback Button -->
+   <a id="feedbackBtn" href="review.php">Feedback</a>
+
+
+   <!-- Feedback Modal -->
+   <div id="feedbackModal" class="modal" onclick="closeFeedbackModal(event)">
+     <div class="modal-content" onclick="event.stopPropagation()">
+       <span class="close-btn" onclick="closeFeedbackModal(event)">&times;</span>
+       <h2>Submit Feedback</h2>
+       <form onsubmit="submitFeedback(event)">
+         <p><input type="text" id="feedbackName" placeholder="Your Name" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #ccc;" /></p>
+         <p><textarea id="feedbackText" placeholder="Your Feedback" required rows="4" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></textarea></p>
+         <button type="submit" style="background: #ffcc33; border: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; cursor: pointer;">Submit</button>
+       </form>
+     </div>
+   </div>
+</body>
+</html>

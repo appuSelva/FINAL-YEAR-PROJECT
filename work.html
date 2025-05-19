@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Categories - JustWage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      background: #555;
+      color: #fff;
+      padding: 0 30px;
+      height: 60px;
+    }
+
+    .logo {
+      background: #e53935;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.5em;
+      padding: 5px 18px;
+      border-radius: 0 0 8px 8px;
+      margin-right: 30px;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ffd600;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Rounded Search Bar Style */
+    .search-container {
+      max-width: 500px;
+      margin: 0 auto 30px auto;
+      position: relative;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 12px 45px 12px 20px;
+      border-radius: 30px;
+      border: none;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 1em;
+      transition: box-shadow 0.3s;
+    }
+
+    .search-container input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #e53935;
+    }
+
+    .search-container i {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aaa;
+    }
+
+    .category-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .category-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .category-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-item i {
+      font-size: 2em;
+      color: #ff9800;
+      margin-bottom: 10px;
+    }
+
+    .category-item a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      font-size: 1.1em;
+      display: block;
+      margin-top: 8px;
+    }
+
+    .category-item a:hover {
+      color: #e53935;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">Just<span style="color:#ffd600;">Wage</span></div>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Available Work Categories</h2>
+
+    <!-- Updated Rounded Search Bar -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for a category...">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <div class="category-list" id="categoryList">
+      <div class="category-item">
+        <i class="fas fa-bolt"></i>
+        <a href="electrician.html">Electricians</a>
+      </div>
+      <div class="category-item">
+        <i class="fas fa-paint-roller"></i>
+        <a href="painter.html">Painters</a>
+      </div>
+      <div class="category-item">
+        <i class="fas fa-wrench"></i>
+        <a href="plumber.html">Plumbers</a>
+      </div>
+      <div class="category-item">
+        <i class="fas fa-hammer"></i>
+        <a href="carpenter.html">Carpenters</a>
+      </div>
+      <div class="category-item">
+        <i class="fas fa-tree"></i>
+        <a href="garderner.html">Gardeners</a>
+      </div>
+      <div class="category-item">
+        <i class="fas fa-broom"></i>
+        <a href="cleaners.html">Cleaners</a>
+      </div>
+      <div class="category-item">
+        <i class="fas fa-dumpster"></i>
+        <a href="waste.html">Waste Removal</a>
+      </div>
+      <div class="category-item">
+        <i class="fas fa-truck"></i>
+        <a href="movers.html">Movers</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Real-time category filter
+    document.getElementById('searchInput').addEventListener('keyup', function () {
+      const query = this.value.toLowerCase();
+      const items = document.querySelectorAll('.category-item');
+
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
+

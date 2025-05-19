@@ -1,0 +1,329 @@
+<!-- Save this as plumbers.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Available Plumbers - JustWage</title>
+  <style>
+    #feedbackBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  background-color: #ffd600;
+  color: #222;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 2000;
+  transition: background 0.3s;
+}
+#feedbackBtn:hover {
+  background-color: #e6b800;
+}
+    /* Same CSS as painters.html — retained for consistency */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      background: #555;
+      color: #fff;
+      padding: 0 30px;
+      height: 60px;
+    }
+    .logo {
+      background: #e53935;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.5em;
+      padding: 5px 18px;
+      border-radius: 0 0 8px 8px;
+      margin-right: 30px;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      margin-left: auto;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #ffd600;
+    }
+    .header {
+      background: #222;
+      color: #ffffff;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .container {
+      padding: 25px 30px;
+      max-width: 1200px;
+      margin: 0 auto 60px auto;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 25px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      transition: border-color 0.3s;
+    }
+    #searchInput:focus {
+      border-color: #ffd600;
+      outline: none;
+    }
+    #workerContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .worker-card {
+      background: linear-gradient(135deg, #fffbe6, #fff3cc);
+      border: 1.5px solid #ffcc33;
+      border-radius: 14px;
+      padding: 20px 18px;
+      box-shadow: 0 6px 20px rgba(255, 204, 51, 0.25);
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.3s ease;
+      user-select: none;
+    }
+    .worker-card:hover {
+      border-color: #e6b800;
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px rgba(230, 184, 0, 0.35);
+    }
+    .worker-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #222;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .verified {
+      color: #28a745;
+      font-weight: 900;
+      font-size: 1.2rem;
+      user-select: none;
+    }
+    .worker-info {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.3;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+      padding: 20px;
+    }
+    .modal-content {
+      background: #fffde7;
+      padding: 30px 28px;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+      position: relative;
+      color: #222;
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      font-weight: 800;
+      font-size: 1.7rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #222;
+    }
+    .modal-content p {
+      margin: 8px 0;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .modal-content strong {
+      color: #444;
+    }
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 28px;
+      font-weight: 900;
+      cursor: pointer;
+      user-select: none;
+      color: #555;
+    }
+    .close-btn:hover {
+      color: #222;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 14px;
+      }
+      .worker-card {
+        padding: 16px 14px;
+      }
+      .container {
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Just<span style="color:#ffd600;">Wage</span></div>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="work.html">CATEGORY</a>
+    </div>
+  </nav>
+
+  <header class="header">Available Plumbers</header>
+
+  <main class="container">
+    <input type="text" id="searchInput" placeholder="Search plumbers by name or location..." onkeyup="filterWorkers()" />
+    <div id="workerContainer"></div>
+  </main>
+
+  <div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <span class="close-btn" onclick="event.stopPropagation(); closeModal(event)">&times;</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const workers = [
+        { name: "Ravi P", location: "T. Nagar, Chennai", contact: "9200000001", profession: "Plumber", description: "Leak and pipe repair expert.", rating: 5, verified: true },
+        { name: "Suresh M", location: "Velachery, Chennai", contact: "9200000002", profession: "Plumber", description: "Bathroom fitting specialist.", rating: 4, verified: true },
+        { name: "Kumar T", location: "Anna Nagar, Chennai", contact: "9200000003", profession: "Plumber", description: "Kitchen sink installer.", rating: 4, verified: false },
+        { name: "Mani S", location: "Adyar, Chennai", contact: "9200000004", profession: "Plumber", description: "Fast waterline repair.", rating: 3, verified: true },
+        { name: "Sathish K", location: "Mylapore, Chennai", contact: "9200000005", profession: "Plumber", description: "PVC & CPVC fittings expert.", rating: 5, verified: true },
+        { name: "Gopi R", location: "Tambaram, Chennai", contact: "9200000006", profession: "Plumber", description: "Repairs noisy pipelines.", rating: 4, verified: true },
+        { name: "Dinesh V", location: "Perambur, Chennai", contact: "9200000007", profession: "Plumber", description: "Fixes clogged drains.", rating: 4, verified: false },
+        { name: "Arun M", location: "Thiruvanmiyur, Chennai", contact: "9200000008", profession: "Plumber", description: "Overhead tank cleaning.", rating: 5, verified: true },
+        { name: "Muthu R", location: "Kodambakkam, Chennai", contact: "9200000009", profession: "Plumber", description: "Affordable tap fittings.", rating: 3, verified: true },
+        { name: "Bala T", location: "Ashok Nagar, Chennai", contact: "9200000010", profession: "Plumber", description: "Appliance waterline setup.", rating: 5, verified: true },
+        { name: "Naveen K", location: "Guindy, Chennai", contact: "9200000011", profession: "Plumber", description: "Sump motor connection.", rating: 4, verified: true },
+        { name: "Vijay P", location: "Nungambakkam, Chennai", contact: "9200000012", profession: "Plumber", description: "Underground pipe fixes.", rating: 5, verified: true },
+        { name: "Ajith S", location: "Saidapet, Chennai", contact: "9200000013", profession: "Plumber", description: "Geyser pipeline fitting.", rating: 4, verified: true },
+        { name: "Santhosh R", location: "Vadapalani, Chennai", contact: "9200000014", profession: "Plumber", description: "Toilet flushing systems.", rating: 4, verified: true },
+        { name: "Tharun M", location: "Royapettah, Chennai", contact: "9200000015", profession: "Plumber", description: "Quick emergency plumbing.", rating: 5, verified: true },
+        { name: "Saravanan S", location: "Kilpauk, Chennai", contact: "9200000016", profession: "Plumber", description: "Pipe extension works.", rating: 4, verified: false },
+        { name: "Vimal J", location: "Egmore, Chennai", contact: "9200000017", profession: "Plumber", description: "House water system setup.", rating: 5, verified: true },
+        { name: "Elango R", location: "Ambattur, Chennai", contact: "9200000018", profession: "Plumber", description: "Plumbing layout design.", rating: 4, verified: false },
+        { name: "Prakash V", location: "Porur, Chennai", contact: "9200000019", profession: "Plumber", description: "Bathroom renovations expert.", rating: 5, verified: true },
+        { name: "Vikram N", location: "Teynampet, Chennai", contact: "9200000020", profession: "Plumber", description: "Dual flush setup.", rating: 4, verified: true },
+        { name: "Lokesh R", location: "Chromepet, Chennai", contact: "9200000021", profession: "Plumber", description: "Tank overflow alarm fitting.", rating: 4, verified: false },
+        { name: "Ramesh S", location: "Sholinganallur, Chennai", contact: "9200000022", profession: "Plumber", description: "Water filter line installer.", rating: 5, verified: true },
+        { name: "Selva M", location: "Pallavaram, Chennai", contact: "9200000023", profession: "Plumber", description: "Bathroom hand shower install.", rating: 4, verified: true },
+        { name: "Aravind S", location: "Avadi, Chennai", contact: "9200000024", profession: "Plumber", description: "Cistern tank repairs.", rating: 5, verified: true },
+        { name: "Yogesh V", location: "Perungalathur, Chennai", contact: "9200000025", profession: "Plumber", description: "Rental plumbing maintenance.", rating: 3, verified: false }
+      ];
+
+      const workerContainer = document.getElementById("workerContainer");
+
+      function renderWorkers(list) {
+        workerContainer.innerHTML = "";
+        if (list.length === 0) {
+          workerContainer.innerHTML = `<p style="grid-column:1/-1; text-align:center; font-weight:600; color:#666;">No plumbers found matching your search.</p>`;
+          return;
+        }
+        list.forEach(worker => {
+          const card = document.createElement("div");
+          card.classList.add("worker-card");
+          card.innerHTML = `
+            <div class="worker-name">${worker.name}${worker.verified ? ' <span class="verified" title="Verified">&#10004;</span>' : ''}</div>
+            <div class="worker-info"><strong>Location:</strong> ${worker.location}</div>
+            <div class="worker-info"><strong>Contact:</strong> ${worker.contact}</div>
+            <div class="worker-info"><strong>Rating:</strong> ${"★".repeat(worker.rating)}${"☆".repeat(5 - worker.rating)}</div>
+          `;
+          card.addEventListener("click", () => showWorkerModal(worker));
+          workerContainer.appendChild(card);
+        });
+      }
+
+      function showWorkerModal(worker) {
+        const modal = document.getElementById("modal");
+        const modalContentDiv = document.getElementById("modalContent");
+        modalContentDiv.innerHTML = `
+          <h2>${worker.name} ${worker.verified ? '<span class="verified" title="Verified">&#10004;</span>' : ''}</h2>
+          <p><strong>Profession:</strong> ${worker.profession}</p>
+          <p><strong>Location:</strong> ${worker.location}</p>
+          <p><strong>Contact Number:</strong> ${worker.contact}</p>
+          <p><strong>Description:</strong> ${worker.description}</p>
+          <p><strong>Rating:</strong> ${"★".repeat(worker.rating)}${"☆".repeat(5 - worker.rating)}</p>
+        `;
+        modal.style.display = "flex";
+      }
+
+      window.closeModal = function (event) {
+        if (
+          event.target.classList.contains("modal") ||
+          event.target.classList.contains("close-btn")
+        ) {
+          document.getElementById("modal").style.display = "none";
+        }
+      };
+
+      window.filterWorkers = function () {
+        const query = document.getElementById("searchInput").value.toLowerCase();
+        const filtered = workers.filter(worker =>
+          worker.name.toLowerCase().includes(query) ||
+          worker.location.toLowerCase().includes(query)
+        );
+        renderWorkers(filtered);
+      };
+
+      renderWorkers(workers);
+    });
+  </script>
+    <!-- Feedback Button -->
+    <a id="feedbackBtn" href="review.php">Feedback</a>
+
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal" onclick="closeFeedbackModal(event)">
+      <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeFeedbackModal(event)">&times;</span>
+        <h2>Submit Feedback</h2>
+        <form onsubmit="submitFeedback(event)">
+          <p><input type="text" id="feedbackName" placeholder="Your Name" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #ccc;" /></p>
+          <p><textarea id="feedbackText" placeholder="Your Feedback" required rows="4" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></textarea></p>
+          <button type="submit" style="background: #ffcc33; border: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; cursor: pointer;">Submit</button>
+        </form>
+      </div>
+    </div>
+</body>
+</html>
+
+

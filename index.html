@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JustWage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('hhhhh.jpg') no-repeat center center/cover;
+            height: 100%;
+            overflow-x: hidden;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            background: #555;
+            color: #fff;
+            padding: 0 30px;
+            height: 60px;
+        }
+        .logo {
+            background: #e53935;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.5em;
+            padding: 5px 18px;
+            border-radius: 0 0 8px 8px;
+            margin-right: 30px;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            margin-left: auto;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffd600;
+        }
+        .hero {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            background: url('your-new-elegant-background.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            filter: brightness(0.99); /* Darken the background */
+        }
+        .hero-bg-anim {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            animation: floatWaves 8s ease-in-out infinite alternate;
+        }
+        @keyframes floatWaves {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-30px); }
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6); /* Darker overlay for better text contrast */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            color: #fff;
+            text-align: left;
+            max-width: 700px;
+            z-index: 2;
+        }
+        .hero-content h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        .hero-content p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .hero-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 22px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 999px;
+            background-color: transparent;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn i {
+            font-size: 1em;
+        }
+
+        .hero-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        @media (max-width: 800px) {
+            .hero-content { max-width: 95%; }
+            .button-group { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Just<span style="color:#ffd600;">Wage</span></div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="login.php">SIGN IN</a>
+            <a href="website.php">SIGN UP</a>
+            <a href="work.html">CATEGORY</a>
+        </div>
+    </div>
+    <div class="hero">
+        <svg class="hero-bg-anim" viewBox="0 0 1440 420" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path fill="#ffd600" fill-opacity="0.25" d="M0,160L80,154.7C160,149,320,139,480,154.7C640,171,800,213,960,197.3C1120,181,
+          1280,107,1360,69.3L1440,32L1440,420L1360,420C1280,420,1120,420,960,420C800,420,640,420,480,420C320,420,160,420,80,
+          420L0,420Z"></path>
+          <path fill="#ff9800" fill-opacity="0.35" d="M0,320L80,288C160,256,320,192,480,186.7C640,181,800,235,960,250.7C1120,
+          267,1280,245,1360,234.7L1440,224L1440,420L1360,420C1280,420,1120,420,960,420C800,420,640,420,480,420C320,420,160,420,
+          80,420L0,420Z"></path>
+          <path fill="#fff" fill-opacity="0.15" d="M0,384L80,373.3C160,363,320,341,480,341.3C640,341,800,363,960,373.3C1120,
+          384,1280,384,1360,384L1440,384L1440,420L1360,420C1280,420,1120,420,960,420C800,420,640,420,480,420C320,420,160,420,
+          80,420L0,420Z"></path>
+        </svg>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to justwage<br>Connecting You with Trusted Daily Wage Workers Effortlessly</h1>
+            <p>
+                Finding reliable daily wage workers for your needs has never been easier! Whether you need plumbers, electricians, painters, carpenters, or laborers, we help you connect directly with skilled workers in your area.
+            </p>
+            <div class="button-group">
+                <a href="electrician.html" class="hero-btn"><i class="fas fa-bolt"></i> Electrician</a>
+                <a href="painter.html" class="hero-btn"><i class="fas fa-paint-roller"></i> Painter</a>
+                <a href="plumber.html" class="hero-btn"><i class="fas fa-wrench"></i> Plumber</a>
+                <a href="carpenter.html" class="hero-btn"><i class="fas fa-hammer"></i> Carpenter</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
